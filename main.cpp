@@ -1,5 +1,6 @@
 #include <string>
 #include <iostream>
+#include <utility>
 
 class Human {
     public:
@@ -8,8 +9,8 @@ class Human {
         virtual void walk() = 0;
 
         Human (std::string name, std::string gender, int age){
-            this->name = name;
-            this->gender = gender;
+            this->name = std::move(name);
+            this->gender = std::move(gender);
             this->age = age;
         }
 
@@ -17,24 +18,24 @@ class Human {
             return this->name;
         }
 
-        void setName(std::string name){
-            this->name = name;
+        void setName(std::string name2){
+            this->name = std::move(name2);
         }
 
         std::string getGender(){
             return this->gender;
         }
 
-        void setGender(std::string gender){
-            this->gender = gender;
+        void setGender(std::string gender2){
+            this->gender = std::move(gender2);
         }
 
-        int getAge(){
+        [[nodiscard]] int getAge() const{
             return this->age;
         }
 
-        void setAge(int age){
-            this->age = age;
+        void setAge(int age2){
+            this->age = age2;
         }
 
     private:
@@ -46,15 +47,15 @@ class Father: public Human{
     public:
         Father() : Human(name, gender, age), name(name), gender(gender), age(age) {}
 
-        void ate(){
+        void ate() override{
             std::cout << "Father ate" << std::endl;
         }
 
-        void speak(){
+        void speak() override{
             std::cout << "Father speak" << std::endl;
         }
 
-        void walk(){
+        void walk() override{
             std::cout << "Father walk" << std::endl;
         }
 
@@ -72,4 +73,8 @@ int main(){
     father->ate();
     father->speak();
     father->walk();
+    
+    std::cout << father->getName() << std::endl;
+    std::cout << father->getGender() << std::endl;
+    std::cout << father->getAge() << std::endl;
 }
