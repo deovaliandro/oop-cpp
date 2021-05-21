@@ -49,6 +49,23 @@ void Human::setAge(int age){
     this->age = age;
 }
 
+class Father: public Human{
+    public:
+        Father(std::string name, std::string gender, int age): Human(name, gender, age){ }
+
+        void ate(){
+            std::cout << "Father ate" << std::endl;
+        }
+
+        void speak(){
+            std::cout << "Father speak" << std::endl;
+        }
+
+        void walk(){
+            std::cout << "Father walk" << std::endl;
+        }
+}
+
 int main(){
     Human *human;
     Human other;
