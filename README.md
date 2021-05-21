@@ -1,1 +1,3 @@
-# oop-cpp
+# OOP with CPP
+
+Just learn

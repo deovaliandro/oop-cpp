@@ -17,8 +17,8 @@ class Human {
         void setName(std::string name);
         std::string getGender();
         void setGender(std::string gender);
-        int getInt();
-        void setInt(int age);
+        int getAge();
+        void setAge(int age);
     
     private:
         std::string name, gender;
@@ -37,6 +37,20 @@ std::string Human::getGender(){
     return this->gender;
 }
 
+void Human::setGender(std::string gender){
+    this->gender = gender;
+}
+
+int Human::getAge(){
+    return this->age;
+}
+
+void Human::setAge(int age){
+    this->age = age;
+}
+
 int main(){
-    
+    Human *human;
+    Human other;
+    human = &other;
 }
