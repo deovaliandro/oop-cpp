@@ -50,8 +50,14 @@ void Human::setAge(int age){
 }
 
 class Father: public Human{
+    private:
+        std::string name, gender;
+        int age;
+        
     public:
-        Father(std::string name, std::string gender, int age): Human(name, gender, age){ }
+        Father(std::string name, std::string gender, int age): Human(name, gender, age){
+            
+        }
 
         void ate(){
             std::cout << "Father ate" << std::endl;
@@ -67,7 +73,8 @@ class Father: public Human{
 }
 
 int main(){
-    Human *human;
-    Human other;
-    human = &other;
+    Father * father, thefather;
+    father = &thefather;
+
+    
 }
