@@ -13,51 +13,38 @@ class Human {
             this->age = age;
         }
 
-        std::string getName();
-        void setName(std::string name);
-        std::string getGender();
-        void setGender(std::string gender);
-        int getAge();
-        void setAge(int age);
-    
+        std::string getName(){
+            return this->name;
+        }
+
+        void setName(std::string name){
+            this->name = name;
+        }
+
+        std::string getGender(){
+            return this->gender;
+        }
+
+        void setGender(std::string gender){
+            this->gender = gender;
+        }
+
+        int getAge(){
+            return this->age;
+        }
+
+        void setAge(int age){
+            this->age = age;
+        }
+
     private:
         std::string name, gender;
         int age;
 };
 
-std::string Human::getName(){
-    return this->name;
-}
-
-void Human::setName(std::string name){
-    this->name = name;
-}
-
-std::string Human::getGender(){
-    return this->gender;
-}
-
-void Human::setGender(std::string gender){
-    this->gender = gender;
-}
-
-int Human::getAge(){
-    return this->age;
-}
-
-void Human::setAge(int age){
-    this->age = age;
-}
-
 class Father: public Human{
-    private:
-        std::string name, gender;
-        int age;
-        
     public:
-        Father(std::string name, std::string gender, int age): Human(name, gender, age){
-            
-        }
+        Father() : Human(name, gender, age), name(name), gender(gender), age(age) {}
 
         void ate(){
             std::cout << "Father ate" << std::endl;
@@ -70,11 +57,19 @@ class Father: public Human{
         void walk(){
             std::cout << "Father walk" << std::endl;
         }
-}
+
+        private:
+            std::string name, gender;
+            int age;
+};
 
 int main(){
-    Father * father, thefather;
-    father = &thefather;
-
-    
+    Father * father, afather;
+    father = &afather;
+    father->setName("Paul");
+    father->setGender("Man");
+    father->setAge(40);
+    father->ate();
+    father->speak();
+    father->walk();
 }
