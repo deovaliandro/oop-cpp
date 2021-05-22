@@ -60,16 +60,18 @@ class Father: public Human{
 };
 
 int main(){
-    Father father;
-    father.setName("Test");
-    father.setGender("Man");
-    father.setAge(22);
+    Father * father, thefather;
+    father = &thefather;
 
-    father.walk();
-    father.speak();
-    father.ate();
+    father->setName("Test");
+    father->setGender("Man");
+    father->setAge(22);
 
-    std::cout << father.getName() << std::endl;
-    std::cout << father.getGender() << std::endl;
-    std::cout << father.getAge() << std::endl;
+    father->walk();
+    father->speak();
+    father->ate();
+
+    std::cout << father->getName() << std::endl;
+    std::cout << father->getGender() << std::endl;
+    std::cout << father->getAge() << std::endl;
 }
