@@ -59,13 +59,30 @@ class Father: public Human{
         }
 };
 
+class Mother: public Human{
+    public:
+        Mother() : Human(getName(), getGender(), getAge(())) {}
+
+        void ate() override{
+            std::cout << "Mother ate" << std::endl;
+        }
+
+        void speak() override{
+            std::cout << "Mother ate" << std::endl;
+        }
+
+        void walk() override{
+            std::cout << "Mother walk" << std::endl;
+        }
+};
+
 int main(){
     Father * father, thefather;
     father = &thefather;
 
-    father->setName("Test");
+    father->setName("Papi");
     father->setGender("Man");
-    father->setAge(22);
+    father->setAge(32);
 
     father->walk();
     father->speak();
@@ -74,4 +91,15 @@ int main(){
     std::cout << father->getName() << std::endl;
     std::cout << father->getGender() << std::endl;
     std::cout << father->getAge() << std::endl;
+
+    Mother * mother, themother;
+    mother = &themother;
+
+    mother->setName("Mami");
+    mother->setGender("Woman");
+    mother->setAge(30);
+
+    std::cout << mother->getName() << std::endl;
+    std::cout << mother->getGender() << std::endl;
+    std::cout << mother->getAge() << std::endl;
 }
