@@ -1,6 +1,5 @@
 #include <string>
 #include <iostream>
-#include <utility>
 
 class Human {
     public:
@@ -9,8 +8,8 @@ class Human {
         virtual void walk() = 0;
 
         Human (std::string name, std::string gender, int age){
-            this->name = std::move(name);
-            this->gender = std::move(gender);
+            this->name = name;
+            this->gender = gender;
             this->age = age;
         }
 
@@ -18,24 +17,24 @@ class Human {
             return this->name;
         }
 
-        void setName(std::string name2){
-            this->name = std::move(name2);
+        void setName(std::string name){
+            this->name = name;
         }
 
         std::string getGender(){
             return this->gender;
         }
 
-        void setGender(std::string gender2){
-            this->gender = std::move(gender2);
+        void setGender(std::string gender){
+            this->gender = gender;
         }
 
-        [[nodiscard]] int getAge() const{
+        int getAge() const{
             return this->age;
         }
 
-        void setAge(int age2){
-            this->age = age2;
+        void setAge(int age){
+            this->age = age;
         }
 
     private:
@@ -45,7 +44,7 @@ class Human {
 
 class Father: public Human{
     public:
-        Father() : Human(name, gender, age), name(name), gender(gender), age(age) {}
+        Father() : Human(getName(), getGender(), getAge()){}
 
         void ate() override{
             std::cout << "Father ate" << std::endl;
@@ -58,23 +57,19 @@ class Father: public Human{
         void walk() override{
             std::cout << "Father walk" << std::endl;
         }
-
-        private:
-            std::string name, gender;
-            int age;
 };
 
 int main(){
-    Father * father, afather;
-    father = &afather;
-    father->setName("Paul");
-    father->setGender("Man");
-    father->setAge(40);
-    father->ate();
-    father->speak();
-    father->walk();
-    
-    std::cout << father->getName() << std::endl;
-    std::cout << father->getGender() << std::endl;
-    std::cout << father->getAge() << std::endl;
+    Father father;
+    father.setName("Test");
+    father.setGender("Man");
+    father.setAge(22);
+
+    father.walk();
+    father.speak();
+    father.ate();
+
+    std::cout << father.getName() << std::endl;
+    std::cout << father.getGender() << std::endl;
+    std::cout << father.getAge() << std::endl;
 }
