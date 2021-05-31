@@ -1,3 +1,0 @@
-/home/ai/Desktop/code/oop-cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/ai/Desktop/code/oop-cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/ai/Desktop/code/oop-cpp/cmake-build-debug/CMakeFiles/oop_cpp.dir
