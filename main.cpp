@@ -85,11 +85,11 @@ class Mother: public Human{
 };
 
 int main(){
-    Father * father, thefather;
-    father = &thefather;
+    Father * father = new Father;
+    // father = &thefather;
 
-    Mother * mother, themother;
-    mother = &themother;
+    Mother * mother = new Mother;
+    // mother = &themother;
 
     father->setName("Papi");
     father->setGender("Man");
