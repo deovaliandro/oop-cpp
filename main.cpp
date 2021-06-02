@@ -13,6 +13,11 @@ class Human {
             this->age = age;
         }
 
+        // Add destructor
+        ~Human() {
+            std::cout << "Destructor" << std::endl;
+        }
+
         std::string getName(){
             return this->name;
         }
@@ -45,6 +50,9 @@ class Human {
 class Father: public Human{
     public:
         Father() : Human(getName(), getGender(), getAge()){}
+
+        // Destructor
+        ~Father();
 
         void ate() override{
             std::cout << "Father ate" << std::endl;
