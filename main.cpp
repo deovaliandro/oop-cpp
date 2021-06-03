@@ -14,10 +14,7 @@ public:
         this->age = new int(age);
     }
 
-    // Add destructor
-    ~Human() {
-        std::cout << "Destructor" << std::endl;
-    }
+    ~Human() = default;
 
     std::string getName(){
         return this->name;
