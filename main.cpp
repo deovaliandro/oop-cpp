@@ -1,58 +1,61 @@
 #include <string>
 #include <iostream>
+#include <utility>
 
 class Human {
-    public:
-        virtual void ate() = 0;
-        virtual void speak() = 0;
-        virtual void walk() = 0;
+public:
+    virtual void ate() = 0;
+    virtual void speak() = 0;
+    virtual void walk() = 0;
 
-        Human (std::string name, std::string gender, int age){
-            this->name = name;
-            this->gender = gender;
-            this->age = age;
-        }
+    Human (std::string name, std::string gender, int age){
+        this->name = std::move(name);
+        this->gender = std::move(gender);
+        this->age = new int(age);
+    }
 
-        // Add destructor
-        ~Human() {
-            std::cout << "Destructor" << std::endl;
-        }
+    // Add destructor
+    ~Human() {
+        std::cout << "Destructor" << std::endl;
+    }
 
-        std::string getName(){
-            return this->name;
-        }
+    std::string getName(){
+        return this->name;
+    }
 
-        void setName(std::string name){
-            this->name = name;
-        }
+    void setName(const std::string& setname){
+        this->name = std::move(name);
+    }
 
-        std::string getGender(){
-            return this->gender;
-        }
+    std::string getGender(){
+        return this->gender;
+    }
 
-        void setGender(std::string gender){
-            this->gender = gender;
-        }
+    void setGender(std::string setgender){
+        this->gender = std::move(setgender);
+    }
 
-        int getAge() const{
-            return this->age;
-        }
+    [[nodiscard]] int getAge() const{
+        return *age;
+    }
 
-        void setAge(int age){
-            this->age = age;
-        }
+    void setAge(int lage){
+        *age = lage;
+    }
 
-    private:
-        std::string name, gender;
-        int age;
+private:
+    std::string name, gender;
+    int * age;
 };
 
 class Father: public Human{
     public:
-        Father() : Human(getName(), getGender(), getAge()){}
+        Father(std::string name1, std::string gender1, int age1)
+                : Human(std::move(name1), std::move(gender1), age1) {
+        }
 
         // Destructor
-        ~Father();
+        ~Father() = default;
 
         void ate() override{
             std::cout << "Father ate" << std::endl;
@@ -69,7 +72,11 @@ class Father: public Human{
 
 class Mother: public Human{
     public:
-        Mother() : Human(getName(), getGender(), getAge()) {}
+        Mother(std::string name1, std::string gender1, int age1)
+                : Human(std::move(name1), std::move(gender1), age1) {
+        }
+
+        ~Mother() = default;
 
         void ate() override{
             std::cout << "Mother ate" << std::endl;
@@ -85,19 +92,16 @@ class Mother: public Human{
 };
 
 int main(){
-    Father * father = new Father;
-    // father = &thefather;
+    auto * father = new Father("Len", "Man", 34);
+    father->setName("Yuri");
+    father->setGender("Man2");
+    father->setAge(22);
 
-    Mother * mother = new Mother;
-    // mother = &themother;
+    auto * mother = new Mother("nanno", "man", 33);
 
     father->setName("Papi");
     father->setGender("Man");
     father->setAge(32);
-
-    mother->setName("Mami");
-    mother->setGender("Woman");
-    mother->setAge(30);
 
     father->walk();
     father->speak();
